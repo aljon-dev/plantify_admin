@@ -1,39 +1,63 @@
 package com.example.plantify_admin;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
+import java.util.ArrayList;
 
 public class ProductAdapter extends BaseAdapter {
 
-    public ProductAdapter(){
+
+    private ArrayList<ProductModel> productList;
+    private Context context;
+
+    public ProductAdapter(Context context, ArrayList<ProductModel> productList){
+
+        this.productList = productList;
+        this.context = context;
 
     }
 
-    interface  onItemClickListener{
 
-        void onItemClick(ProductModel productModel);
-
-    }
 
 
     @Override
     public int getCount() {
-        return 0;
+        return productList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return productList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items,parent,false);
+
+        ImageView imageView = convertView.findViewById(R.id.productImg);
+        TextView productname = convertView.findViewById(R.id.productname);
+        TextView productprice = convertView.findViewById(R.id.productprice);
+
+        ProductModel productModel = productList.get(position);
+
+        Glide.with(parent.getContext()).load(productModel.getImageUrl()).into(imageView);
+        productname.setText(productModel.getProductName());
+        productprice.setText(productModel.getPrice());
+
+
+        return convertView;
     }
 }

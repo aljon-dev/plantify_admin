@@ -2,38 +2,39 @@ package com.example.plantify_admin;
 
 public class ProductModel {
 
-    String name,price,quantity,imageUrl;
+    String ProductName,Price,Quantity,ImageUrl;
 
-    public String getName() {
-        return name;
+
+    public String getProductName() {
+        return ProductName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        ProductName = productName;
     }
 
     public String getPrice() {
-        return price;
+        return Price;
     }
 
     public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+        Price = price;
     }
 
     public String getQuantity() {
-        return quantity;
+        return Quantity;
     }
 
     public void setQuantity(String quantity) {
-        this.quantity = quantity;
+        Quantity = quantity;
+    }
+
+    public String getImageUrl() {
+        return ImageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        ImageUrl = imageUrl;
     }
 }
 
