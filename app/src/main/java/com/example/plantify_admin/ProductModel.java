@@ -2,7 +2,7 @@ package com.example.plantify_admin;
 
 public class ProductModel {
 
-    String ProductName,Price,Quantity,ImageUrl;
+    String ProductName,Price,Quantity,ImageUrl,key;
 
 
     public String getProductName() {
@@ -35,6 +35,14 @@ public class ProductModel {
 
     public void setImageUrl(String imageUrl) {
         ImageUrl = imageUrl;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }
 

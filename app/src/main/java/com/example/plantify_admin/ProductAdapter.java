@@ -25,6 +25,14 @@ public class ProductAdapter extends BaseAdapter {
 
     }
 
+    onItemClickListener onItemClickListener;
+    public void setOnItemClickListener(onItemClickListener onItemClickListener){
+        this.onItemClickListener = onItemClickListener;
+    }
+    interface onItemClickListener{
+        void OnClick(ProductModel productModel);
+    }
+
 
 
 
@@ -56,6 +64,8 @@ public class ProductAdapter extends BaseAdapter {
         Glide.with(parent.getContext()).load(productModel.getImageUrl()).into(imageView);
         productname.setText(productModel.getProductName());
         productprice.setText(productModel.getPrice());
+
+        convertView.setOnClickListener(v -> {onItemClickListener.OnClick(productModel);});
 
 
         return convertView;
