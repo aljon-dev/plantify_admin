@@ -48,7 +48,7 @@ public class add_product extends Fragment {
 
     private ImageView ImageProduct;
     private MaterialButton uploadPhoto,sendProduct;
-    private TextInputEditText productName,productPrice,Quantity;
+    private TextInputEditText productName,productPrice,Quantity,productDescr;
     private Bitmap bitmap;
     private Uri uri;
 
@@ -78,11 +78,13 @@ public class add_product extends Fragment {
         productName = view.findViewById(R.id.productName);
         productPrice = view.findViewById(R.id.productPrice);
         Quantity = view.findViewById(R.id.productQuantity);
+        productDescr = view.findViewById(R.id.Description);
 
         ImageProduct = view.findViewById(R.id.ImageProduct);
 
         uploadPhoto = view.findViewById(R.id.UploadPhoto);
         sendProduct = view.findViewById(R.id.SubmitProduct);
+
 
 
         uploadPhoto.setOnClickListener( v ->{
@@ -91,15 +93,15 @@ public class add_product extends Fragment {
 
 
         sendProduct.setOnClickListener(v->{
-
+            String description = productDescr.getText().toString();
             String Pname = productName.getText().toString();
             String Pprice = productPrice.getText().toString();
             String PQty = Quantity.getText().toString();
 
-            if(Pname.isEmpty() && Pprice.isEmpty() & PQty.isEmpty() && bitmap == null){
+            if(Pname.isEmpty() && Pprice.isEmpty() & PQty.isEmpty() || description.isEmpty() && bitmap == null){
                 Toast.makeText(getActivity(), "Filled the fields", Toast.LENGTH_SHORT).show();
             }else{
-                uploadProduct(Pname,Pprice,PQty,bitmap);
+                uploadProduct(Pname,Pprice,PQty,description,bitmap);
             }
 
 
@@ -116,7 +118,7 @@ public class add_product extends Fragment {
         return view;
     }
 
-    private void uploadProduct (String Pname,String Pprice, String Pqty, Bitmap bitmap ){
+    private void uploadProduct (String Pname,String Pprice, String Pqty,String Description, Bitmap bitmap ){
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
@@ -140,6 +142,10 @@ public class add_product extends Fragment {
                             UploadProduct.put("Price",Pprice);
                             UploadProduct.put("Quantity", Pqty);
                             UploadProduct.put("ProductName",Pname);
+                            UploadProduct.put("ProductDescription",Description);
+                            UploadProduct.put("productRating","");
+                            UploadProduct.put("TotalRating","");
+
 
 
                             firebaseDatabase.getReference().child("Products").child(LocalTime).setValue(UploadProduct).addOnSuccessListener(new OnSuccessListener<Void>() {
