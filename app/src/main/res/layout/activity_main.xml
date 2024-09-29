@@ -45,15 +45,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
+
                     android:textColor="@color/white"
                     android:text="Email"
                     />
                 <EditText
                     android:id="@+id/user_email"
+
                     android:layout_marginTop="10dp"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/white">
+                    android:background="@drawable/border_edit_text">
 
                 </EditText>
 
@@ -80,7 +82,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:background="@color/white">
+                    android:background="@drawable/border_edit_text">
 
                 </EditText>
 
