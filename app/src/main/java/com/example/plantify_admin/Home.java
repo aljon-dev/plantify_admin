@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.plantify_admin.add_product.add_product;
 import com.example.plantify_admin.chats.chats;
+import com.example.plantify_admin.feedbacks.Feedbacks;
 import com.example.plantify_admin.forDelivery.for_delivery;
 import com.example.plantify_admin.orderDeliveries.Deliveries;
 import com.google.android.material.button.MaterialButton;
@@ -86,7 +87,7 @@ public class Home extends AppCompatActivity {
                     setFragment(new for_delivery());
                 }
                 if(itemid == R.id.FeedBacks){
-
+                        setFragment(new Feedbacks());
                 }
                 if(itemid == R.id.Sign_Out){
                     Intent intent = new Intent(Home.this, MainActivity.class);
