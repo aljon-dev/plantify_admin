@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.plantify_admin.adapter.ProductAdapter;
@@ -42,6 +43,7 @@ public class home_layout extends Fragment {
     private ProductAdapter adapter;
 
     private FirebaseDatabase firebaseDatabase;
+    private SearchView  searchView;
 
 
     @Override
@@ -49,45 +51,72 @@ public class home_layout extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home_layout, container, false);
 
-
         firebaseDatabase = FirebaseDatabase.getInstance();
-
+        searchView = view.findViewById(R.id.searchItem);
         productListed = view.findViewById(R.id.productListed);
         productList = new ArrayList<>();
-        adapter = new ProductAdapter(getContext(),productList);
+        adapter = new ProductAdapter(getContext(), productList);
         productListed.setAdapter(adapter);
 
+        // Handle item click
         adapter.setOnItemClickListener(new ProductAdapter.onItemClickListener() {
             @Override
             public void OnClick(ProductModel productModel) {
-                    SelectOption(productModel.getKey());
+                SelectOption(productModel.getKey());
             }
         });
 
-
+        // Fetch products from Firebase
         firebaseDatabase.getReference("Products").addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 productList.clear();
-                for(DataSnapshot ds: snapshot.getChildren()){
+                for (DataSnapshot ds : snapshot.getChildren()) {
                     ProductModel productModel = ds.getValue(ProductModel.class);
-                    productList.add(productModel);
                     productModel.setKey(ds.getKey());
-
+                    productList.add(productModel);
                 }
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                filterProductList(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterProductList(newText);
+                return true;
             }
         });
 
         return view;
     }
 
+    private void filterProductList(String query) {
+        if (query.isEmpty()) {
+
+            adapter.updateList(productList);
+        } else {
+            ArrayList<ProductModel> filteredList = new ArrayList<>();
+            for (ProductModel product : productList) {
+                if (product.getProductName().toLowerCase().contains(query.toLowerCase())) {
+                    filteredList.add(product);
+                }
+            }
+
+            adapter.updateList(filteredList);
+        }
+    }
     private void SelectOption(String id){
 
         AlertDialog.Builder OptionSelect = new AlertDialog.Builder(getContext());
