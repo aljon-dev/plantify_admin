@@ -1,6 +1,5 @@
-package com.example.plantify_admin;
+package com.example.plantify_admin.add_product;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +23,7 @@ import android.Manifest;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.plantify_admin.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -239,6 +239,7 @@ public class add_product extends Fragment {
                         }
                     }
                 }
+
             }
         });
 

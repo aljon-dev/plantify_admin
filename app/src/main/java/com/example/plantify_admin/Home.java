@@ -17,9 +17,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.plantify_admin.add_product.add_product;
+import com.example.plantify_admin.chats.chats;
+import com.example.plantify_admin.forDelivery.for_delivery;
+import com.example.plantify_admin.orderDeliveries.Deliveries;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Home extends AppCompatActivity {
 
@@ -30,7 +35,7 @@ public class Home extends AppCompatActivity {
 
     private NavigationView nav;
     private ImageView imagebutton;
-
+    private FirebaseAuth firebaseAuth;
     private DrawerLayout drawer;
 
     @Override
@@ -44,6 +49,7 @@ public class Home extends AppCompatActivity {
             return insets;
         });
 
+        firebaseAuth = FirebaseAuth.getInstance();
         nav = findViewById(R.id.home_menu);
         drawer = findViewById(R.id.drawer);
         imagebutton = findViewById(R.id.imageButton);
@@ -70,15 +76,22 @@ public class Home extends AppCompatActivity {
                     Toast.makeText(Home.this, "Add Products", Toast.LENGTH_SHORT).show();
                 }
                 if(itemid == R.id.Orders){
+                    setFragment(new Deliveries());
+                }
+                if(itemid == R.id.chats){
+                    setFragment(new chats());
 
                 }
                 if(itemid == R.id.Delivery){
-
+                    setFragment(new for_delivery());
                 }
                 if(itemid == R.id.FeedBacks){
 
                 }
                 if(itemid == R.id.Sign_Out){
+                    Intent intent = new Intent(Home.this, MainActivity.class);
+                    firebaseAuth.signOut();
+                    startActivity(intent);
 
                 }
                 return false;

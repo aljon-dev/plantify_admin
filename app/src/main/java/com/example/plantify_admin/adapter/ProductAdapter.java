@@ -1,4 +1,4 @@
-package com.example.plantify_admin;
+package com.example.plantify_admin.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.plantify_admin.model.ProductModel;
+import com.example.plantify_admin.R;
 
 import java.util.ArrayList;
 
@@ -29,12 +31,9 @@ public class ProductAdapter extends BaseAdapter {
     public void setOnItemClickListener(onItemClickListener onItemClickListener){
         this.onItemClickListener = onItemClickListener;
     }
-    interface onItemClickListener{
+    public interface onItemClickListener{
         void OnClick(ProductModel productModel);
     }
-
-
-
 
     @Override
     public int getCount() {
@@ -63,7 +62,7 @@ public class ProductAdapter extends BaseAdapter {
 
         Glide.with(parent.getContext()).load(productModel.getImageUrl()).into(imageView);
         productname.setText(productModel.getProductName());
-        productprice.setText(productModel.getPrice());
+        productprice.setText("₱" +productModel.getPrice());
 
         convertView.setOnClickListener(v -> {onItemClickListener.OnClick(productModel);});
 

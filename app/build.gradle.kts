@@ -46,5 +46,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(kotlin("script-runtime"))
+    implementation("org.jetbrains.kotlin:kotlin-script-runtime:2.0.10")
 }

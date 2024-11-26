@@ -1,4 +1,4 @@
-package com.example.plantify_admin;
+package com.example.plantify_admin.model;
 
 public class ProductModel {
 

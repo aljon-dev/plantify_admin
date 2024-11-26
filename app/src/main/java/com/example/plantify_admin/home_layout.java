@@ -12,10 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.plantify_admin.adapter.ProductAdapter;
+import com.example.plantify_admin.model.ProductModel;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
@@ -147,8 +147,6 @@ public class home_layout extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-
-
                 Map<String,Object> UpdateProducts = new HashMap<>();
                 UpdateProducts.put("Price",productPrice.getText().toString());
                 UpdateProducts.put("ProductName",productName.getText().toString());
@@ -158,11 +156,13 @@ public class home_layout extends Fragment {
                 Toast.makeText(getContext(), "Product Updated", Toast.LENGTH_SHORT).show();
 
 
+
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+             dialog.dismiss();
             }
         });
         EditProducts.show();
