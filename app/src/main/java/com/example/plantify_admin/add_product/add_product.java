@@ -143,7 +143,6 @@ public class add_product extends Fragment {
                             UploadProduct.put("Quantity", Pqty);
                             UploadProduct.put("ProductName",Pname);
                             UploadProduct.put("ProductDescription",Description);
-                            UploadProduct.put("productRating","0");
                             UploadProduct.put("TotalRating","0");
 
 
