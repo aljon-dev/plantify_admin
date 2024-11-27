@@ -143,8 +143,8 @@ public class add_product extends Fragment {
                             UploadProduct.put("Quantity", Pqty);
                             UploadProduct.put("ProductName",Pname);
                             UploadProduct.put("ProductDescription",Description);
-                            UploadProduct.put("productRating","");
-                            UploadProduct.put("TotalRating","");
+                            UploadProduct.put("productRating","0");
+                            UploadProduct.put("TotalRating","0");
 
 
 
@@ -154,6 +154,7 @@ public class add_product extends Fragment {
                                     Toast.makeText(getActivity(), "Product Added", Toast.LENGTH_SHORT).show();
                                     productName.setText("");
                                     productPrice.setText("");
+                                    productDescr.setText("");
                                     Quantity.setText("");
                                 }
                             });
